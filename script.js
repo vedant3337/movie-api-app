@@ -5,7 +5,7 @@ const inputBox = document.querySelector(".inputBox");
 const getMovieInfo = async (movie) => {
   try {
     const api_key = "dde37068";
-    const url = `http://www.omdbapi.com/?apikey=${api_key}&t=${movie}`;
+    const url = `https://www.omdbapi.com/?apikey=${api_key}&t=${movie}`;
     const response = await fetch(url);
     if (!response.ok) {
       throw new error("Unable to find Movie!");
@@ -52,7 +52,7 @@ const showError = (msg) => {
   movieContainer.classList.add("noBgc");
 };
 
-searchForm.addEventListener("submit", (e) => {
+const handleSubmit = (e) => {
   e.preventDefault();
   const movieName = inputBox.value.trim();
   if (movieName !== "") {
@@ -61,4 +61,6 @@ searchForm.addEventListener("submit", (e) => {
   } else {
     showError("Please Enter Movie Name!");
   }
-});
+};
+
+searchForm.addEventListener("submit", handleSubmit);
